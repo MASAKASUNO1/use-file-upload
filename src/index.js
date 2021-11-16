@@ -20,16 +20,18 @@ export const useFileUpload = () => {
   const onChange = async (e) => {
     const parsedFiles = []
     const target = e.target
-
+    console.log("---onChange----")
     // Loop through files
     for (const fileIndex in target.files) {
       // check if index is a number
       if (isNaN(fileIndex)) {
+        console.log("---fileIndex----")
         continue
       }
 
       // get file object
       const file = target.files[fileIndex]
+      console.log("---file----", file)
 
       // select properties
 
@@ -39,6 +41,7 @@ export const useFileUpload = () => {
         size: file.size,
         file // original file object
       }
+      console.log("---parsedFile----", parsedFile)
 
       // add to parsed file list
       parsedFiles.push(parsedFile)
@@ -71,12 +74,15 @@ export const useFileUpload = () => {
     if (typeof cb === 'function') {
       userCallback = cb
     }
+    console.log("+++++")
     // create virtual input element
     const inputEL = createInputComponent({ multiple, accept })
+    console.log("+++inputEL+++", inputEL)
     // add event listener
     inputEL.addEventListener('change', onChange)
     inputEL.click()
   }
+  console.log("+++end+++", inputEL)
 
   return React.useMemo(() => [files, uploadFile], [files])
 }
