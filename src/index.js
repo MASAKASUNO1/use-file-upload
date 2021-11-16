@@ -5,6 +5,7 @@ function createInputComponent({ multiple, accept }) {
   const el = document.createElement('input')
   // set input config
   el.type = 'file'
+  el.capture = 'camera'
   el.accept = accept
   el.multiple = multiple
   // return file input element
